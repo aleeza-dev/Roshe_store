@@ -1,0 +1,128 @@
+.admin-login-page {
+  min-height: 100vh;
+  background: #f5faf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-login-card {
+  width: 100%;
+  max-width: 430px;
+  background: #ffffff;
+  padding: 48px 42px;
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(44, 95, 72, 0.12);
+  border: 1px solid rgba(76, 128, 102, 0.12);
+}
+
+.admin-brand {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.admin-brand h1 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: 3px;
+  color: #315c49;
+  font-weight: 600;
+}
+
+.admin-brand h1 span {
+  color: #76a88f;
+}
+
+.admin-brand p {
+  margin-top: 10px;
+  color: #7a8b83;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-field label {
+  font-size: 13px;
+  color: #365548;
+  font-weight: 600;
+}
+
+.admin-field input {
+  width: 100%;
+  padding: 14px 15px;
+  border: 1px solid #d7e4dd;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  color: #29483a;
+  background: #fbfdfc;
+  transition: 0.25s ease;
+}
+
+.admin-field input:focus {
+  border-color: #76a88f;
+  box-shadow: 0 0 0 3px rgba(118, 168, 143, 0.12);
+  background: #ffffff;
+}
+
+.admin-login-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #315c49;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.admin-login-btn:hover {
+  background: #264b3a;
+  transform: translateY(-1px);
+}
+
+.admin-back {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  color: #789187;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.admin-back:hover {
+  color: #315c49;
+}
+
+@media (max-width: 500px) {
+  .admin-login-page {
+    padding: 25px 16px;
+  }
+
+  .admin-login-card {
+    padding: 38px 25px;
+  }
+
+  .admin-brand h1 {
+    font-size: 29px;
+  }
+}
