@@ -7,7 +7,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import "./App.css";
-
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import Products from "./admin/Products";
@@ -19,9 +18,10 @@ import Customers from "./admin/Customers";
 import ShippingSettings from "./admin/ShippingSettings";
 import Coupons from "./admin/Coupons";
 
+const API_URL = "https://roshe-backend.onrender.com";
+
 function Home() {
   const navigate = useNavigate();
-
   const [products, setProducts] = useState([]);
   const [activeCoupons, setActiveCoupons] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -33,7 +33,6 @@ function Home() {
       const savedCart = JSON.parse(
         localStorage.getItem("roshe_cart") || "[]"
       );
-
       return Array.isArray(savedCart) ? savedCart : [];
     } catch {
       return [];
@@ -45,24 +44,24 @@ function Home() {
       const savedWishlist = JSON.parse(
         localStorage.getItem("roshe_wishlist") || "[]"
       );
-
       return Array.isArray(savedWishlist) ? savedWishlist : [];
     } catch {
       return [];
     }
   });
 
-  // Fetch products from backend.
+  // Fetch products from the live backend.
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/products"
-        );
+        const response = await fetch(`${API_URL}/api/products`);
+        if (!response.ok) {
+          throw new Error("Could not fetch products");
+        }
 
         const data = await response.json();
 
-        if (response.ok && Array.isArray(data)) {
+        if (Array.isArray(data)) {
           setProducts(data);
         }
       } catch (error) {
@@ -73,12 +72,12 @@ function Home() {
     fetchProducts();
   }, []);
 
-  // Fetch active coupons for the customer offers bar.
+  // Fetch active coupons.
   useEffect(() => {
     const fetchActiveCoupons = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/coupons/active"
+          `${API_URL}/api/coupons/active`
         );
 
         if (!response.ok) {
@@ -86,7 +85,6 @@ function Home() {
         }
 
         const data = await response.json();
-
         setActiveCoupons(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Failed to fetch active coupons:", error);
@@ -97,12 +95,12 @@ function Home() {
     fetchActiveCoupons();
   }, []);
 
-  // Save cart whenever its contents change.
+  // Save cart.
   useEffect(() => {
     localStorage.setItem("roshe_cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Save wishlist whenever its contents change.
+  // Save wishlist.
   useEffect(() => {
     localStorage.setItem(
       "roshe_wishlist",
@@ -110,7 +108,7 @@ function Home() {
     );
   }, [wishlist]);
 
-  // Open the bag if the URL contains ?cart=open.
+  // Open cart from ?cart=open.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
 
@@ -147,9 +145,8 @@ function Home() {
     });
   };
 
-  const isWishlisted = (productId) => {
-    return wishlist.some((item) => item._id === productId);
-  };
+  const isWishlisted = (productId) =>
+    wishlist.some((item) => item._id === productId);
 
   // Add a product to the cart.
   const addToCart = (product) => {
@@ -291,11 +288,8 @@ function Home() {
                   key={`${coupon._id || coupon.code}-${index}`}
                 >
                   <span className="roshe-offer-star">✦</span>
-
                   <strong>{coupon.percentOff}% OFF</strong>
-
                   <span>USE CODE</span>
-
                   <span className="roshe-offer-code">
                     {coupon.code}
                   </span>
@@ -323,22 +317,18 @@ function Home() {
 
         <nav className="nav-links">
           <a href="#home">Home</a>
-
           <a
             href="#shop"
             onClick={() => setSelectedCategory("All")}
           >
             Shop
           </a>
-
           <a href="#new">New Arrivals</a>
           <a href="#collections">Collections</a>
-
           <a
             href="#promo"
             onClick={(event) => {
               event.preventDefault();
-
               document.getElementById("promo")?.scrollIntoView({
                 behavior: "smooth",
                 block: "start",
@@ -367,7 +357,6 @@ function Home() {
             title="My Wishlist"
           >
             {wishlist.length > 0 ? "♥" : "♡"}
-
             {wishlist.length > 0 && (
               <span className="wishlist-count">
                 {wishlist.length}
@@ -385,7 +374,6 @@ function Home() {
             aria-label="Shopping bag"
           >
             🛍
-
             {cartItemsCount > 0 && (
               <span className="cart-count">
                 {cartItemsCount}
@@ -588,9 +576,7 @@ function Home() {
               <div className="empty-cart-icon wishlist-empty-icon">
                 ♡
               </div>
-
               <h3>Your wishlist is empty</h3>
-
               <p>
                 Tap the heart on any product to save your
                 favourites here.
@@ -601,7 +587,6 @@ function Home() {
                 className="checkout-btn wishlist-shop-btn"
                 onClick={() => {
                   setWishlistOpen(false);
-
                   document.getElementById("shop")?.scrollIntoView({
                     behavior: "smooth",
                     block: "start",
@@ -761,7 +746,7 @@ function Home() {
             <div className="feature-icon">◇</div>
             <div>
               <h3>Easy Shopping</h3>
-              <p>Simple &amp; secure checkout</p>
+              <p>Simple & secure checkout</p>
             </div>
           </div>
 
@@ -797,7 +782,6 @@ function Home() {
               <div className="category-content category-glass">
                 <p>COLLECTION</p>
                 <h3>Women</h3>
-
                 <button
                   type="button"
                   className="category-shop-btn"
@@ -821,7 +805,6 @@ function Home() {
               <div className="category-content category-glass">
                 <p>COLLECTION</p>
                 <h3>Accessories</h3>
-
                 <button
                   type="button"
                   className="category-shop-btn"
@@ -1077,21 +1060,18 @@ function Home() {
           <h2>
             𝚁𝙾𝚂𝙷𝙴<span>.</span>
           </h2>
-
           <p>Timeless clothing for everyday living.</p>
         </div>
 
         <div className="footer-links">
           <div>
             <h4>Shop</h4>
-
             <a
               href="#shop"
               onClick={() => setSelectedCategory("Women")}
             >
               Women
             </a>
-
             <a
               href="#shop"
               onClick={() => setSelectedCategory("Accessories")}
@@ -1117,7 +1097,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route
+          path="/product/:id"
+          element={<ProductDetails />}
+        />
         <Route path="/admin" element={<AdminLogin />} />
         <Route
           path="/admin/dashboard"

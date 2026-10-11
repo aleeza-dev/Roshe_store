@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Coupons.css";
 
-const API_URL = "http://localhost:5000/api/coupons";
+const API_URL = "https://roshe-backend.onrender.com/api/coupons";
 
 const emptyForm = {
   code: "",

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./AddProduct.css";
 
-const API_URL = "http://localhost:5000/api/products";
+const API_URL = "https://roshe-backend.onrender.com/api/products";
 
 function AddProduct() {
   const navigate = useNavigate();

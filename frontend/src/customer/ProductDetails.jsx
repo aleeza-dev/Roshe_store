@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./ProductDetails.css";
 
-const API_URL = "http://localhost:5000/api/products";
+const API_URL = "https://roshe-backend.onrender.com/api/products";
 const CART_KEY = "roshe_cart";
 
 function ProductDetails() {

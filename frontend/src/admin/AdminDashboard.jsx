@@ -32,9 +32,11 @@ function AdminDashboard() {
     // Fetch total products
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:5000/api/products"
-        );
+        
+const response = await fetch(
+  "https://roshe-backend.onrender.com/api/products"
+);
+
 
         const data = await response.json();
 
@@ -56,7 +58,7 @@ function AdminDashboard() {
     const fetchStats = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/orders/stats/summary",
+          "https://roshe-backend.onrender.com/api/orders/stats/summary",
           {
             headers: {
               Authorization: `Bearer ${token}`,

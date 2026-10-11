@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://roshe-backend.onrender.com/api";
 
 function Checkout() {
   const navigate = useNavigate();

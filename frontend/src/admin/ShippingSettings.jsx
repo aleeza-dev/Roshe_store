@@ -23,7 +23,7 @@ function ShippingSettings() {
     const loadSettings = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/settings/shipping"
+          "https://roshe-backend.onrender.com/api/settings/shipping"
         );
 
         const data = await response.json();
@@ -62,7 +62,7 @@ function ShippingSettings() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/settings/shipping",
+        "https://roshe-backend.onrender.com/api/settings/shipping",
         {
           method: "PUT",
           headers: {

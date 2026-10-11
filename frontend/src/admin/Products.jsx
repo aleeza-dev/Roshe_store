@@ -29,7 +29,7 @@ function Products() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/products"
+        "https://roshe-backend.onrender.com/api/products"
       );
 
       const data = await response.json();
@@ -67,7 +67,7 @@ function Products() {
       const token = localStorage.getItem("adminToken");
 
       const response = await fetch(
-        `http://localhost:5000/api/products/${product._id}`,
+        `https://roshe-backend.onrender.com/api/products/${product._id}`,
         {
           method: "DELETE",
           headers: {

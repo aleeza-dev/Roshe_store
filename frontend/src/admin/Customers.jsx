@@ -27,7 +27,7 @@ function Customers() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/orders/customers",
+        "https://roshe-backend.onrender.com/api/orders/customers",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
